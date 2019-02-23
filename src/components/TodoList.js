@@ -1,4 +1,5 @@
 import React from "react";
+import TodoItem from "./TodoItem";
 
 function TodoList(props) {
   const { title, items } = props;
@@ -9,9 +10,7 @@ function TodoList(props) {
 
       <ul className="list-group">
         {items.map(item => (
-          <li key={item.id} className="list-group-item">
-            {item.text}
-          </li>
+          <TodoItem key={item.id} data={item} />
         ))}
       </ul>
     </div>
