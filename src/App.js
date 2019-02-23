@@ -1,28 +1,53 @@
 import React from "react";
 
 function App() {
+  let items = [
+    {
+      id: 1,
+      text: "Cras justo odio",
+      completed: true,
+      createdDate: 1501594393387,
+      completedDate: 1501594873717
+    },
+    {
+      id: 2,
+      text: "Dapibus ac facilisis in",
+      completed: false,
+      createdDate: 1501594393387
+    },
+    {
+      id: 3,
+      text: "Morbi leo risus",
+      completed: false,
+      createdDate: 1501594393387
+    },
+    {
+      id: 4,
+      text: "Porta ac consectetur ac",
+      completed: false,
+      createdDate: 1501594393387
+    },
+    {
+      id: 5,
+      text: "Vestibulum at eros",
+      completed: false,
+      createdDate: 1501594393387
+    }
+  ];
+  let title = "ToDo list";
+
   return (
     <div className="container">
       <div className="row">
         <div className="todolist">
-          <h1>ToDo List</h1>
+          <h1>{title}</h1>
 
           <ul className="list-group">
-            <li className="list-group-item">
-              Cras justo odio
-              <button class="btn btn-primary" type="submit">
-                Complete
-              </button>
-              <button class="btn btn-primary" type="submit">
-                Delete
-              </button>
-            </li>
-            <li className="list-group-item list-group-item-success">
-              Dapibus ac facilisis in
-            </li>
-            <li className="list-group-item">Morbi leo risus</li>
-            <li className="list-group-item">Porta ac consectetur ac</li>
-            <li className="list-group-item">Vestibulum at eros</li>
+            {items.map(item => (
+              <li key={item.id} className="list-group-item">
+                {item.text}
+              </li>
+            ))}
           </ul>
         </div>
       </div>
