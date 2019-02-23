@@ -1,4 +1,5 @@
 import React from "react";
+import TodoList from "./components/TodoList";
 
 function App() {
   let items = [
@@ -39,17 +40,7 @@ function App() {
   return (
     <div className="container">
       <div className="row">
-        <div className="todolist">
-          <h1>{title}</h1>
-
-          <ul className="list-group">
-            {items.map(item => (
-              <li key={item.id} className="list-group-item">
-                {item.text}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <TodoList title={title} items={items} />
       </div>
     </div>
   );
