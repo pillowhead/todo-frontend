@@ -7,6 +7,7 @@ class App extends Component {
     super();
 
     this.state = {
+      filter: "active",
       items: [
         {
           id: 1,
@@ -51,8 +52,10 @@ class App extends Component {
         <div className="row">
           <TodoList
             title={title}
-            addNew={this.addNew.bind(this)}
             items={this.state.items}
+            addNew={this.addNew.bind(this)}
+            filter={this.state.filter}
+            changeFilter={this.changeFilter.bind(this)}
           />
         </div>
       </div>
@@ -61,7 +64,7 @@ class App extends Component {
 
   addNew(text) {
     let nextId = uuidv1(); // to test later
-    //let nextId = this.state.items.length + 1;
+    //let nextId = this.state.items.length + 1; //basic nextId concept
     let item = {
       id: nextId,
       text: text
@@ -71,6 +74,10 @@ class App extends Component {
     this.setState({
       items: updatedList
     });
+  }
+
+  changeFilter(filter) {
+    this.setState({ filter });
   }
 }
 
