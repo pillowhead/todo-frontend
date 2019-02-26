@@ -1,47 +1,27 @@
 import React, { Component } from "react";
 import TodoList from "./components/TodoList";
-const uuidv1 = require("uuid/v1");
+import TodoService from "./components/TodoService";
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      filter: "active",
-      items: [
-        {
-          id: 1,
-          text: "Cras justo odio",
-          completed: true,
-          createdDate: 1501594393387,
-          completedDate: 1501594873717
-        },
-        {
-          id: 2,
-          text: "Dapibus ac facilisis in",
-          completed: false,
-          createdDate: 1501594393387
-        },
-        {
-          id: 3,
-          text: "Morbi leo risus",
-          completed: false,
-          createdDate: 1501594393387
-        },
-        {
-          id: 4,
-          text: "Porta ac consectetur ac",
-          completed: false,
-          createdDate: 1501594393387
-        },
-        {
-          id: 5,
-          text: "Vestibulum at eros",
-          completed: false,
-          createdDate: 1501594393387
-        }
-      ]
+      filter: "all",
+      items: []
     };
+  }
+
+  componentWillMount() {
+    this.load();
+  }
+
+  async load() {
+    let res = await TodoService.getTodoList(this.state.filter);
+
+    this.setState({
+      items: res.data
+    });
   }
 
   render() {
@@ -63,8 +43,7 @@ class App extends Component {
   }
 
   addNew(text) {
-    let nextId = uuidv1(); // to test later
-    //let nextId = this.state.items.length + 1; //basic nextId concept
+    let nextId = this.state.items.length + 1; //basic nextId concept
     let item = {
       id: nextId,
       text: text
