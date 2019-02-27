@@ -29,7 +29,9 @@ class TodoList extends Component {
 
   addNew(text) {
     const data = { text: text };
-    TodoService.createTodoItem(data);
+    TodoService.createTodoItem(data).then(() => {
+      this.load();
+    });
   }
 
   changeFilter(filter) {
