@@ -34,6 +34,18 @@ class TodoList extends Component {
     });
   }
 
+  changeStatus(id, checked) {
+    checked
+      ? TodoService.incompleteTodoItem(id).then(() => this.load())
+      : TodoService.completeTodoItem(id).then(() => this.load());
+  }
+
+  deleteItem(id) {
+    TodoService.deleteTodoItem(id).then(() => {
+      this.load();
+    });
+  }
+
   changeFilter(filter) {
     this.setState({ filter });
   }
@@ -65,7 +77,11 @@ class TodoList extends Component {
 
         <ul className="list-group">
           {filteredItems.map(item => (
-            <TodoItem key={item.id} data={item} />
+            <TodoItem
+              key={item.id}
+              data={item}
+              changeStatus={this.changeStatus.bind(this)}
+            />
           ))}
         </ul>
         <Footer items={items} />
