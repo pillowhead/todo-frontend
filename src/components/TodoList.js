@@ -46,6 +46,23 @@ class TodoList extends Component {
     });
   }
 
+  deleteCompleted(items) {
+    items
+      .filter(item => item.completed)
+      .forEach(item => TodoService.deleteTodoItem(item.id));
+    this.load();
+  }
+
+  // needs to be fixed. Rerender is not working correctly
+  completeBulk = items => {
+    items.forEach(item => {
+      if ((item.completed = false)) {
+        TodoService.completeTodoItem(item.id);
+      }
+    });
+    this.load();
+  };
+
   changeFilter(filter) {
     this.setState({ filter });
   }
@@ -81,11 +98,17 @@ class TodoList extends Component {
               key={item.id}
               data={item}
               changeStatus={this.changeStatus.bind(this)}
+              deleteItem={this.deleteItem.bind(this)}
             />
           ))}
         </ul>
-        <Footer items={items} />
-        <Filter change={this.changeFilter.bind(this)} />
+        <Footer
+          items={items}
+          deleteCompleted={this.deleteCompleted.bind(this)}
+          filteredItems={filteredItems}
+          completeBulk={this.completeBulk.bind(this)}
+        />
+        <Filter changeFilter={this.changeFilter.bind(this)} />
       </div>
     );
   }

@@ -7,7 +7,7 @@ const options = {
 };
 
 export default function Filter(props) {
-  const { change } = props;
+  const { changeFilter } = props;
 
   return (
     <div>
@@ -16,7 +16,7 @@ export default function Filter(props) {
           type="button"
           className="btn btn-outline-dark"
           key={key}
-          onClick={() => change(key)}
+          onClick={() => changeFilter(key)}
         >
           {options[key]}
         </button>
