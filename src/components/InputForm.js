@@ -5,8 +5,8 @@ class InputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      option: props.option || "new",
-      value: props.value || ""
+      option: props.option,
+      value: ""
     };
   }
 
@@ -28,7 +28,7 @@ class InputForm extends Component {
         addNew(text);
         this.clear();
       }
-    } else {
+    } else if (this.state.option === "rename") {
       const renameItem = this.props.renameItem;
       const id = this.props.id;
 
@@ -40,7 +40,7 @@ class InputForm extends Component {
   }
 
   render() {
-    const addNewMessage = this.props.addNewMessage;
+    const message = this.props.message;
 
     return (
       <div className="input-group">
@@ -50,7 +50,7 @@ class InputForm extends Component {
           value={this.state.value}
           onKeyUp={this.handleKeyUp.bind(this)}
           onChange={this.handleChange.bind(this)}
-          placeholder={addNewMessage}
+          placeholder={message}
         />
       </div>
     );

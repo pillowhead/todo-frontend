@@ -63,7 +63,7 @@ class TodoList extends Component {
   // needs to be fixed. Rerender is not working correctly
   completeBulk = items => {
     items.forEach(item => {
-      if ((item.completed = false)) {
+      if (item.completed === false) {
         TodoService.completeTodoItem(item.id);
       }
     });
@@ -93,7 +93,7 @@ class TodoList extends Component {
     const items = this.state.items;
 
     const filteredItems = this.applyFilter(items, filter);
-    const addNewMessage = "Add new task";
+    const addNewMessage = "Add new task...";
 
     return (
       <div className="todolist">
@@ -111,6 +111,7 @@ class TodoList extends Component {
               data={item}
               changeStatus={this.changeStatus.bind(this)}
               deleteItem={this.deleteItem.bind(this)}
+              renameItem={this.renameItem.bind(this)}
             />
           ))}
         </ul>
