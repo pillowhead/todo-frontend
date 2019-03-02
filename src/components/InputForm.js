@@ -5,6 +5,7 @@ class InputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      option: props.option || "new",
       value: props.value || ""
     };
   }
@@ -18,16 +19,29 @@ class InputForm extends Component {
   }
 
   handleKeyUp(e) {
-    const { addNew } = this.props;
     const text = this.state.value.trim();
 
-    if (e.keyCode === KeyCode.KEY_RETURN && text) {
-      addNew(text);
-      this.clear();
+    if (this.state.option === "new") {
+      const addNew = this.props.addNew;
+
+      if (e.keyCode === KeyCode.KEY_RETURN && text) {
+        addNew(text);
+        this.clear();
+      }
+    } else {
+      const renameItem = this.props.renameItem;
+      const id = this.props.id;
+
+      if (e.keyCode === KeyCode.KEY_RETURN && text) {
+        renameItem(id, text);
+        this.clear();
+      }
     }
   }
 
   render() {
+    const addNewMessage = this.props.addNewMessage;
+
     return (
       <div className="input-group">
         <input
@@ -36,7 +50,7 @@ class InputForm extends Component {
           value={this.state.value}
           onKeyUp={this.handleKeyUp.bind(this)}
           onChange={this.handleChange.bind(this)}
-          placeholder="Add new task..."
+          placeholder={addNewMessage}
         />
       </div>
     );

@@ -40,6 +40,13 @@ class TodoList extends Component {
       : TodoService.completeTodoItem(id).then(() => this.load());
   }
 
+  renameItem(id, text) {
+    const data = { text: text };
+    TodoService.updateTodoItem(id, data).then(() => {
+      this.load();
+    });
+  }
+
   deleteItem(id) {
     TodoService.deleteTodoItem(id).then(() => {
       this.load();
@@ -86,11 +93,16 @@ class TodoList extends Component {
     const items = this.state.items;
 
     const filteredItems = this.applyFilter(items, filter);
+    const addNewMessage = "Add new task";
 
     return (
       <div className="todolist">
         <h1>{title}</h1>
-        <InputForm addNew={this.addNew.bind(this)} />
+        <InputForm
+          option="new"
+          addNew={this.addNew.bind(this)}
+          message={addNewMessage}
+        />
 
         <ul className="list-group">
           {filteredItems.map(item => (
