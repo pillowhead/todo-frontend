@@ -61,14 +61,14 @@ class TodoList extends Component {
   }
 
   // needs to be fixed. Rerender is not working correctly
-  completeBulk = items => {
+  completeBulk(items) {
     items.forEach(item => {
       if (item.completed === false) {
-        TodoService.completeTodoItem(item.id);
+        TodoService.completeTodoItem(item.id).then(() => this.load());
       }
     });
-    this.load();
-  };
+    this.changeFilter("all");
+  }
 
   changeFilter(filter) {
     this.setState({ filter });
