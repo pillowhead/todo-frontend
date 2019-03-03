@@ -10,6 +10,7 @@ class TodoList extends Component {
     super(props);
 
     this.state = {
+      renameId: "", //only one remane at a time
       filter: "all",
       items: []
     };
@@ -40,8 +41,16 @@ class TodoList extends Component {
       : TodoService.completeTodoItem(id).then(() => this.load());
   }
 
+  updateRenameId(id) {
+    this.setState({
+      renameId: id
+    });
+    this.load();
+  }
+
   renameItem(id, text) {
     const data = { text: text };
+    this.setState({ renameId: "" });
     TodoService.updateTodoItem(id, data).then(() => {
       this.load();
     });
@@ -90,6 +99,7 @@ class TodoList extends Component {
     const title = this.props.title;
     const filter = this.state.filter;
     const items = this.state.items;
+    const renameId = this.state.renameId;
 
     const filteredItems = this.applyFilter(items, filter);
     const addNewMessage = "Add new task...";
@@ -111,6 +121,8 @@ class TodoList extends Component {
               changeStatus={this.changeStatus.bind(this)}
               deleteItem={this.deleteItem.bind(this)}
               renameItem={this.renameItem.bind(this)}
+              updateRenameId={this.updateRenameId.bind(this)}
+              renameId={renameId}
             />
           ))}
         </ul>

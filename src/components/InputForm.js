@@ -34,7 +34,6 @@ class InputForm extends Component {
 
       if (e.keyCode === KeyCode.KEY_RETURN && text) {
         renameItem(id, text);
-        this.clear();
       }
     }
   }
