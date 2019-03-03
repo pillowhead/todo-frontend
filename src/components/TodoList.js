@@ -60,7 +60,6 @@ class TodoList extends Component {
     this.load();
   }
 
-  // needs to be fixed. Rerender is not working correctly
   completeBulk(items) {
     items.forEach(item => {
       if (item.completed === false) {
