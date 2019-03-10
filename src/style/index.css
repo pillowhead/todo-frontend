@@ -9,3 +9,11 @@
   padding-bottom: 20px;
   text-align: center;
 }
+
+.right-button {
+  float: right;
+}
+
+.list-item {
+  display: inline-block;
+}

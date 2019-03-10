@@ -36,23 +36,22 @@ function TodoItem(props) {
         />
 
         {"  " + data.text + "  "}
-
-        <button
-          type="button"
-          className="btn btn-outline-warning"
-          onClick={handleRename}
-        >
-          Rename
-        </button>
-
-        <button
-          type="button"
-          className="btn btn-outline-danger"
-          onClick={handleDelete}
-        >
-          Delete
-        </button>
-
+        <div className="right-button">
+          <button
+            type="button"
+            className="btn btn-outline-warning"
+            onClick={handleRename}
+          >
+            Rename
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            onClick={handleDelete}
+          >
+            Delete
+          </button>
+        </div>
         {/* renameCode only appears after clicking on Rename button */}
         {renameCode}
       </div>

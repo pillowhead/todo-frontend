@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import InputForm from "./InputForm";
 import Filter from "./Filter";
 import TodoService from "./TodoService";
+import "../style/index.css";
 
 class TodoList extends Component {
   constructor(props) {

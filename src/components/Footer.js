@@ -16,23 +16,24 @@ function Footer(props) {
       <strong>{totalCount}</strong>
       {" in total & "}
       <strong>{completedCount}</strong>
-      {" completed. // "}
+      {" completed."}
+      <div className="right-button">
+        <button
+          type="button"
+          className="btn btn-success"
+          onClick={handleCompleteBulk}
+        >
+          Complete Visible
+        </button>
 
-      <button
-        type="button"
-        className="btn btn-success"
-        onClick={handleCompleteBulk}
-      >
-        Complete Visible
-      </button>
-
-      <button
-        type="button"
-        className="btn btn-danger"
-        onClick={handleDeleteCompleted}
-      >
-        Delete Completed
-      </button>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={handleDeleteCompleted}
+        >
+          Delete Completed
+        </button>
+      </div>
     </div>
   );
 }
